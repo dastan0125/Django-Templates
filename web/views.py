@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import DetailView
+
 from web.models import Product
 
 def index(request):
@@ -11,3 +13,9 @@ def shop(request):
         'pr': product
     }
     return render(request, 'web/shop.html', context)
+
+
+class ProductDetailsView(DetailView):
+    queryset = Product.objects.all()
+    template_name = 'product/product_details.html'
+    context_object_name = 'product'
